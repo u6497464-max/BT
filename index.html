@@ -249,6 +249,7 @@
         </footer>
     </div>
 
+    <!-- CUSTOMIZE MODAL -->
     <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md hidden p-4 overflow-y-auto">
         <div class="bg-neutral-900 border border-neutral-800 w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh]">
             
@@ -284,31 +285,34 @@
                             </div>
                         </div>
 
+                        <!-- PHOTO UPLOAD SECTION -->
                         <div>
-                            <label class="block text-xs font-medium text-neutral-300 mb-1.5">Upload Photo</label>
-                            <div class="flex items-center gap-3">
-                                <label class="flex-1 cursor-pointer bg-neutral-950 border border-neutral-800 hover:border-neutral-700 rounded-xl px-3.5 py-2.5 text-sm text-neutral-300 flex items-center justify-center gap-2 transition">
-                                    <i data-lucide="upload" class="w-4 h-4 text-rose-500"></i>
-                                    <span id="file-name-label" class="truncate">Choose image file...</span>
-                                    <input type="file" id="input-photo-file" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
-                                </label>
-                            </div>
-                            <!-- Hidden input to hold base64 or default image string -->
+                            <label class="block text-xs font-medium text-neutral-300 mb-1.5">Upload Photo from Device</label>
+                            <label class="w-full border-2 border-dashed border-neutral-800 hover:border-rose-500/50 bg-neutral-950/60 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer transition group">
+                                <div class="w-9 h-9 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                                    <i data-lucide="image-plus" class="w-5 h-5"></i>
+                                </div>
+                                <span id="file-name-label" class="text-xs font-medium text-neutral-300">Click to upload photo (.jpg, .png)</span>
+                                <span class="text-[10px] text-neutral-500 mt-0.5">Instant live preview update</span>
+                                <input type="file" id="input-photo-file" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+                            </label>
+                            <!-- Hidden input storing active image data / url -->
                             <input type="hidden" id="input-photo" value="https://images.unsplash.com/photo-1518199266791-5375a83190b7">
                         </div>
 
+                        <!-- BACKGROUND MUSIC SECTION -->
                         <div>
-                            <label class="block text-xs font-medium text-neutral-300 mb-1.5">Background Music</label>
-                            <div class="grid grid-cols-2 gap-2 mb-2">
-                                <select id="input-preset-music" onchange="handlePresetMusic(this.value)" class="bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-rose-500">
-                                    <option value="https://actions.google.com/sounds/v1/ambiences/romantic_music_box.ogg">Romantic Music Box (Default)</option>
+                            <label class="block text-xs font-medium text-neutral-300 mb-1.5">Background Music Option</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <select id="input-preset-music" onchange="handlePresetMusic(this.value)" class="bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500">
+                                    <option value="https://actions.google.com/sounds/v1/ambiences/romantic_music_box.ogg">Romantic Music Box</option>
                                     <option value="https://actions.google.com/sounds/v1/relax/lofi_beats.ogg">Lofi Chill Beats</option>
                                     <option value="https://actions.google.com/sounds/v1/ambiences/cozy_fireplace.ogg">Cozy Acoustic Vibe</option>
                                     <option value="">No Music</option>
                                 </select>
-                                <label class="cursor-pointer bg-neutral-950 border border-neutral-800 hover:border-neutral-700 rounded-xl px-3.5 py-2.5 text-xs text-neutral-300 flex items-center justify-center gap-1.5 transition truncate">
+                                <label class="cursor-pointer bg-neutral-950 border border-neutral-800 hover:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-300 flex items-center justify-center gap-1.5 transition truncate">
                                     <i data-lucide="music" class="w-3.5 h-3.5 text-rose-500"></i>
-                                    <span id="audio-name-label" class="truncate">Upload MP3</span>
+                                    <span id="audio-name-label" class="truncate">Upload MP3 File</span>
                                     <input type="file" id="input-audio-file" accept="audio/*" class="hidden" onchange="handleAudioUpload(event)">
                                 </label>
                             </div>
@@ -317,12 +321,12 @@
 
                         <div>
                             <label class="block text-xs font-medium text-neutral-300 mb-1.5">Heartfelt Message</label>
-                            <textarea id="input-message" rows="3" required class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-rose-500">Every single moment with you feels like a dream come true. Thank you for making my life so magical.</textarea>
+                            <textarea id="input-message" rows="2" required class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-rose-500">Every single moment with you feels like a dream come true. Thank you for making my life so magical.</textarea>
                         </div>
                     </form>
                 </div>
 
-                <div class="mt-8 pt-4 border-t border-neutral-800 flex items-center gap-3">
+                <div class="mt-6 pt-4 border-t border-neutral-800 flex items-center gap-3">
                     <button type="button" onclick="triggerLivePreview()" class="flex-1 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-medium py-3 rounded-xl text-sm shadow-lg shadow-rose-600/20 transition flex items-center justify-center gap-2">
                         <i data-lucide="eye" class="w-4 h-4"></i> Preview Live Gift
                     </button>
@@ -467,8 +471,8 @@
         function openModal(title, category, imageUrl) {
             document.getElementById('modal-template-title').textContent = title;
             document.getElementById('input-photo').value = imageUrl;
-            document.getElementById('file-name-label').textContent = "Choose image file...";
-            document.getElementById('audio-name-label').textContent = "Upload MP3";
+            document.getElementById('file-name-label').textContent = "Click to upload photo (.jpg, .png)";
+            document.getElementById('audio-name-label').textContent = "Upload MP3 File";
             document.getElementById('custom-modal').classList.remove('hidden');
             stopAudio();
             triggerLivePreview();
@@ -496,7 +500,7 @@
         // Handle Preset Music Dropdown Selection
         function handlePresetMusic(val) {
             document.getElementById('input-audio').value = val;
-            document.getElementById('audio-name-label').textContent = "Upload MP3";
+            document.getElementById('audio-name-label').textContent = "Upload MP3 File";
             if (previewState.unlocked) playAudio();
         }
 
